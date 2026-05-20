@@ -91,8 +91,16 @@ EOT
 Allows users to view statistical reports.
 EOT
 
-    mediacms-access-role = <<EOT
-Allows users to access MediaCMS.
+    read-media-role = <<EOT
+Allows users to view embedded media content such as images and videos served by MediaCMS.
+EOT
+
+    write-media-role = <<EOT
+Allows users to upload and manage their own media assets in MediaCMS.
+EOT
+
+    admin-media-role = <<EOT
+Allows users full administrative access to MediaCMS including managing all users and content.
 EOT
 
     annotator-access-role = <<EOT
