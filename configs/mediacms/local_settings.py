@@ -104,6 +104,11 @@ def prod_config():
 
     oidc_secret = read_secret()
     is_https = FRONTEND_HOST.startswith("https")
+    oidc_base_url = os.getenv(
+        "OIDC_BASE_URL",
+        "http://auth-server:8080/realms/record-manager"
+    )
+
     middleware = list(MIDDLEWARE)
 
     if os.getenv("PROTECTED_MEDIA_ENABLED", "True") == "True":
@@ -139,7 +144,7 @@ def prod_config():
                         "settings": {
                             "server_url": os.getenv(
                                 "OIDC_SERVER_URL",
-                                f"{OIDC_BASE_URL}/.well-known/openid-configuration",
+                                f"{oidc_base_url}/.well-known/openid-configuration",
                             ),
                         },
                     }
@@ -160,7 +165,7 @@ def prod_config():
         "PROTECTED_MEDIA_ENABLED": os.getenv("PROTECTED_MEDIA_ENABLED", "True") == "True",
         "OIDC_USERINFO_URL": os.getenv(
             "OIDC_USERINFO_URL",
-            f"{OIDC_BASE_URL}/protocol/openid-connect/userinfo",
+            f"{oidc_base_url}/protocol/openid-connect/userinfo",
         ),
         "UPLOAD_MAX_SIZE": int(os.getenv("UPLOAD_MAX_SIZE", str(1024 * 1024 * 1024))),
         "UPLOAD_MAX_FILES_NUMBER": int(os.getenv("UPLOAD_MAX_FILES_NUMBER", "100")),

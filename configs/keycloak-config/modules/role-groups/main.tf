@@ -32,7 +32,9 @@ locals {
       "write-all-organizations-role",
       "read-action-history-role",
       "read-statistics-role",
-      "mediacms-access-role",
+      "read-media-role",
+      "write-media-role",
+      "admin-media-role",
       "annotator-access-role"
     ]
 
@@ -49,7 +51,6 @@ locals {
       "write-organization-records-role",
       "comment-record-questions-role",
       "complete-records-role",
-      "mediacms-access-role",
       "annotator-access-role"
     ]
 
