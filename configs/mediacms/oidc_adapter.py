@@ -10,12 +10,31 @@ class RoleRestrictedSocialAccountAdapter(DefaultSocialAccountAdapter):
         roles = claims.get("realm_access", {}).get("roles", [])
 
         role_mapping = getattr(settings, "MEDIACMS_ROLE_MAPPING", {})
+        role_priority = getattr(settings, "MEDIACMS_ROLE_PRIORITY", [])
+
         if not any(r in role_mapping for r in roles):
             logger.warning(
                 "[Access denied] User %s has no recognized media role.",
                 claims.get("preferred_username"),
             )
             raise PermissionDenied("Missing required media role.")
+
+        # Update role on every login, not just first time
+        if sociallogin.is_existing:
+            mediacms_role = None
+            for keycloak_role in role_priority:
+                if keycloak_role in roles:
+                    mediacms_role = role_mapping[keycloak_role]
+                    break
+
+            if mediacms_role:
+                user = sociallogin.user
+                logger.info(
+                    "[OIDC] Updating user %s to MediaCMS role '%s'",
+                    user.username,
+                    mediacms_role,
+                )
+                user.set_role_from_mapping(mediacms_role)
 
     def save_user(self, request, sociallogin, form=None):
         user = super().save_user(request, sociallogin, form)
@@ -26,7 +45,6 @@ class RoleRestrictedSocialAccountAdapter(DefaultSocialAccountAdapter):
         role_mapping = getattr(settings, "MEDIACMS_ROLE_MAPPING", {})
         role_priority = getattr(settings, "MEDIACMS_ROLE_PRIORITY", [])
 
-        # Pick highest priority role the user has
         mediacms_role = None
         for keycloak_role in role_priority:
             if keycloak_role in keycloak_roles:
@@ -35,7 +53,7 @@ class RoleRestrictedSocialAccountAdapter(DefaultSocialAccountAdapter):
 
         if mediacms_role:
             logger.info(
-                "[OIDC] Mapping user %s to MediaCMS role '%s'",
+                "[OIDC] Mapping new user %s to MediaCMS role '%s'",
                 user.username,
                 mediacms_role,
             )
