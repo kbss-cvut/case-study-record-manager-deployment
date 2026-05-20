@@ -158,12 +158,13 @@ def prod_config():
             os.getenv("MEDIACMS_READ_ROLE",  "read-media-role"),
         ],
         "PROTECTED_MEDIA_ENABLED": os.getenv("PROTECTED_MEDIA_ENABLED", "True") == "True",
-        "MEDIACMS_READ_ROLE":  os.getenv("MEDIACMS_READ_ROLE",  "read-media-role"),
-        "MEDIACMS_WRITE_ROLE": os.getenv("MEDIACMS_WRITE_ROLE", "write-media-role"),
         "OIDC_USERINFO_URL": os.getenv(
             "OIDC_USERINFO_URL",
             f"{OIDC_BASE_URL}/protocol/openid-connect/userinfo",
         ),
+        "UPLOAD_MAX_SIZE": int(os.getenv("UPLOAD_MAX_SIZE", str(1024 * 1024 * 1024))),
+        "UPLOAD_MAX_FILES_NUMBER": int(os.getenv("UPLOAD_MAX_FILES_NUMBER", "100")),
+        "NUMBER_OF_MEDIA_USER_CAN_UPLOAD": int(os.getenv("NUMBER_OF_MEDIA_USER_CAN_UPLOAD", "100")),
     }
 
     if is_https:
