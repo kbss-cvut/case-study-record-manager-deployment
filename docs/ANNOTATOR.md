@@ -15,7 +15,7 @@ Annotator works with either:
 
 ## MediaCMS: Basic Access
 
-> ⚠️ **Required role:** must be assigned the `mediacms-access-role` to use MediaCMS.
+> ⚠️ **Required role:** must be assigned the roles defined in [local_settings.py](../configs/mediacms/local_settings.py) to use MediaCMS.
 
 Assets can be uploaded to MediaCMS through the **web interface**.
 
