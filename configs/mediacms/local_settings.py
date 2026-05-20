@@ -69,6 +69,7 @@ def dev_config():
         "LOGIN_URL": "/",
         "LOGIN_REDIRECT_URL": "/",
         "LOGOUT_REDIRECT_URL": "/",
+        "ALLOW_CUSTOM_MEDIA_URLS": True,
         "MIDDLEWARE": middleware,
         "INSTALLED_APPS": [
             app for app in INSTALLED_APPS
@@ -106,11 +107,16 @@ def prod_config():
     middleware = list(MIDDLEWARE)
     if 'deploy.docker.protected_media.ProtectedMediaMiddleware' not in middleware:
         middleware.append('deploy.docker.protected_media.ProtectedMediaMiddleware')
+    if 'deploy.docker.by_md5.ByMd5Middleware' not in middleware:
+        middleware.append('deploy.docker.by_md5.ByMd5Middleware')
+    if 'deploy.docker.by_id.ByIdMiddleware' not in middleware:
+        middleware.append('deploy.docker.by_id.ByIdMiddleware')
     config = {
         "DEBUG": os.getenv('DEBUG', 'False') == 'True',
         "USE_IDENTITY_PROVIDERS": True,
         "USE_RBAC": True,
         "GLOBAL_LOGIN_REQUIRED": True,
+        "ALLOW_CUSTOM_MEDIA_URLS": True,
         "LOGIN_URL": "/accounts/oidc/keycloak/login/",
         "LOGIN_REDIRECT_URL": "/",
         "LOGOUT_REDIRECT_URL": "/accounts/oidc/keycloak/login/",
