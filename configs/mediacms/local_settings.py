@@ -111,9 +111,8 @@ def prod_config():
 
     middleware = list(MIDDLEWARE)
 
-    if os.getenv("PROTECTED_MEDIA_ENABLED", "True") == "True":
-        if 'deploy.docker.protected_media.ProtectedMediaMiddleware' not in middleware:
-            middleware.append('deploy.docker.protected_media.ProtectedMediaMiddleware')
+    if 'deploy.docker.protected_media.ProtectedMediaMiddleware' not in middleware:
+        middleware.append('deploy.docker.protected_media.ProtectedMediaMiddleware')
     if 'deploy.docker.by_md5.ByMd5Middleware' not in middleware:
         middleware.append('deploy.docker.by_md5.ByMd5Middleware')
     if 'deploy.docker.by_id.ByIdMiddleware' not in middleware:
