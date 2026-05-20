@@ -105,12 +105,15 @@ def prod_config():
     oidc_secret = read_secret()
     is_https = FRONTEND_HOST.startswith("https")
     middleware = list(MIDDLEWARE)
-    if 'deploy.docker.protected_media.ProtectedMediaMiddleware' not in middleware:
-        middleware.append('deploy.docker.protected_media.ProtectedMediaMiddleware')
+
+    if os.getenv("PROTECTED_MEDIA_ENABLED", "True") == "True":
+        if 'deploy.docker.protected_media.ProtectedMediaMiddleware' not in middleware:
+            middleware.append('deploy.docker.protected_media.ProtectedMediaMiddleware')
     if 'deploy.docker.by_md5.ByMd5Middleware' not in middleware:
         middleware.append('deploy.docker.by_md5.ByMd5Middleware')
     if 'deploy.docker.by_id.ByIdMiddleware' not in middleware:
         middleware.append('deploy.docker.by_id.ByIdMiddleware')
+
     config = {
         "DEBUG": os.getenv('DEBUG', 'False') == 'True',
         "USE_IDENTITY_PROVIDERS": True,
@@ -131,12 +134,12 @@ def prod_config():
                     {
                         "provider_id": "keycloak",
                         "name": "Keycloak",
-                        "client_id": "mediacms",
+                        "client_id": os.getenv("OIDC_CLIENT_ID", "mediacms"),
                         "secret": oidc_secret,
                         "settings": {
                             "server_url": os.getenv(
                                 "OIDC_SERVER_URL",
-                                "http://auth-server:8080/realms/record-manager/.well-known/openid-configuration",
+                                f"{OIDC_BASE_URL}/.well-known/openid-configuration",
                             ),
                         },
                     }
@@ -144,11 +147,25 @@ def prod_config():
             }
         },
         "SOCIALACCOUNT_ADAPTER": "deploy.docker.oidc_adapter.RoleRestrictedSocialAccountAdapter",
-        "MEDIACMS_REQUIRED_ROLE": os.getenv(
-            "MEDIACMS_REQUIRED_ROLE",
-            "mediacms-access-role"
+        "MEDIACMS_ROLE_MAPPING": {
+            os.getenv("MEDIACMS_READ_ROLE",  "read-media-role"):  "user",
+            os.getenv("MEDIACMS_WRITE_ROLE", "write-media-role"): "advancedUser",
+            os.getenv("MEDIACMS_ADMIN_ROLE", "admin-media-role"): "admin",
+        },
+        "MEDIACMS_ROLE_PRIORITY": [
+            os.getenv("MEDIACMS_ADMIN_ROLE", "admin-media-role"),
+            os.getenv("MEDIACMS_WRITE_ROLE", "write-media-role"),
+            os.getenv("MEDIACMS_READ_ROLE",  "read-media-role"),
+        ],
+        "PROTECTED_MEDIA_ENABLED": os.getenv("PROTECTED_MEDIA_ENABLED", "True") == "True",
+        "MEDIACMS_READ_ROLE":  os.getenv("MEDIACMS_READ_ROLE",  "read-media-role"),
+        "MEDIACMS_WRITE_ROLE": os.getenv("MEDIACMS_WRITE_ROLE", "write-media-role"),
+        "OIDC_USERINFO_URL": os.getenv(
+            "OIDC_USERINFO_URL",
+            f"{OIDC_BASE_URL}/protocol/openid-connect/userinfo",
         ),
     }
+
     if is_https:
         config["SECURE_PROXY_SSL_HEADER"] = ("HTTP_X_FORWARDED_PROTO", "https")
 
