@@ -162,6 +162,7 @@ def prod_config():
             os.getenv("MEDIACMS_WRITE_ROLE", "write-media-role"),
             os.getenv("MEDIACMS_READ_ROLE",  "read-media-role"),
         ],
+        "CAN_ADD_MEDIA": os.getenv("CAN_ADD_MEDIA", "advancedUser"),
         "PROTECTED_MEDIA_ENABLED": os.getenv("PROTECTED_MEDIA_ENABLED", "True") == "True",
         "OIDC_USERINFO_URL": os.getenv(
             "OIDC_USERINFO_URL",
