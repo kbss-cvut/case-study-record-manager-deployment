@@ -311,6 +311,11 @@ services:
     volumes:
       - ./configs/db-server/import:/root/graphdb-import:ro
       - db-server:/opt/graphdb/home
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:7200/rest/repositories || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
 
   postgres:
     image: postgres:14
@@ -332,7 +337,10 @@ services:
     expose:
       - "8080"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_started
+      db-server:
+        condition: service_healthy
     environment:
       KC_HOSTNAME_URL: "${PUBLIC_ORIGIN:-http://localhost:${INTERNAL_HOST_PORT:-1235}}${APP_ROOT_PATH:-}/services/auth/"
       KC_HOSTNAME_ADMIN_URL: "${PUBLIC_ORIGIN:-http://localhost:${INTERNAL_HOST_PORT:-1235}}${APP_ROOT_PATH:-}/services/auth/"
