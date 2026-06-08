@@ -10,7 +10,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @base <http://onto.fel.cvut.cz/ontologies/form/media/> .
 
-GRAPH <http://onto.fel.cvut.cz/ontologies/form/media/> {
+<http://onto.fel.cvut.cz/ontologies/form/media/> {
 
 <http://onto.fel.cvut.cz/ontologies/form/media/> rdf:type owl:Ontology ;
     owl:versionIRI fm:v0.0.1 ;
