@@ -33,6 +33,12 @@ server {
         set $oauth2_upstream "http://oauth2-proxy:4180/oauth2/auth";
         proxy_pass $oauth2_upstream;
         include conf.d/snippets/proxy_headers.conf;
+
+        # auth_request subrequests have no body; without clearing
+        # Content-Length, oauth2-proxy waits for a body that never
+        # arrives and times out (504 -> 502) on PATCH/POST/PUT.
+        proxy_pass_request_body off;
+        proxy_set_header Content-Length "";
     }
 
     location /oauth2/ {
