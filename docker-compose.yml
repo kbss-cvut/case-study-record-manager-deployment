@@ -159,7 +159,7 @@ services:
       - ./configs/s-pipes-engine/scripts:/scripts/root:ro
 
   media-asset-annotator:
-    image: manki1337/media-asset-annotator:latest
+    image: ghcr.io/kbss-cvut/media-asset-annotator:latest
     container_name: ${RECORD_SET_NAME:-rm}-media-asset-annotator
     restart: always
     depends_on:
@@ -172,7 +172,7 @@ services:
       MEDIA_ASSETS_LIST_API_URL: "${MEDIA_ASSETS_LIST_API_URL:-${PUBLIC_ORIGIN:-http://localhost:${INTERNAL_HOST_PORT:-1235}}${APP_ROOT_PATH:-}/services/annotator-server/asset/adapter/playlist}"
 
   media-asset-annotator-server:
-    image: manki1337/media-asset-annotator-server:latest
+    image: ghcr.io/kbss-cvut/media-asset-annotator-server:latest
     container_name: ${RECORD_SET_NAME:-rm}-media-asset-annotator-server
     restart: always
     depends_on:
