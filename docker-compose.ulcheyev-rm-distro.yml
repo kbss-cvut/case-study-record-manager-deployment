@@ -1,7 +1,0 @@
-# dev distro
-services:
-  record-manager:
-    image: manki1337/record-manager-ui:latest
-
-  record-manager-server:
-    image: manki1337/record-manager-server:latest
