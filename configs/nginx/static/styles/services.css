@@ -1,0 +1,140 @@
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+}
+
+.services-message {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 28px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.45;
+    font-weight: 500;
+}
+
+.services-message-error {
+    color: var(--danger);
+}
+
+.service-card {
+    min-height: 260px;
+    padding: 34px;
+
+    display: grid;
+    grid-template-columns: minmax(300px, 350px) minmax(0, 1fr);
+    align-items: center;
+    gap: 28px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+
+    cursor: pointer;
+
+    transition:
+            background 120ms ease,
+            border-color 120ms ease,
+            box-shadow 120ms ease,
+            transform 120ms ease;
+}
+
+.service-card:hover {
+    background: var(--surface-hover);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+.service-card:focus-visible {
+    outline: 3px solid rgba(31, 78, 121, 0.22);
+    outline-offset: 3px;
+}
+
+.service-image {
+    width: 100%;
+    height: 260px;
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--surface-muted);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    padding: 22px;
+
+    display: block;
+}
+
+.fallback-image,
+.service-fallback {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    place-items: center;
+
+    color: var(--primary-dark);
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+.service-content,
+.service-info {
+    min-width: 0;
+    max-width: 520px;
+}
+
+.service-type,
+.service-content span,
+.service-info span {
+    display: inline-flex;
+    margin-bottom: 10px;
+
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.25;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.055em;
+}
+
+.service-content h3,
+.service-info h3 {
+    margin: 0;
+
+    color: var(--text);
+    font-size: 23px;
+    line-height: 1.16;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+}
+
+.service-content p,
+.service-info p {
+    margin: 14px 0 0;
+
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.45;
+    font-weight: 500;
+}

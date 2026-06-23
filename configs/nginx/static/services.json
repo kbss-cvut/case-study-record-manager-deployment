@@ -1,0 +1,36 @@
+{
+  "services": [
+    {
+      "title": "Record Manager",
+      "type": "Main application",
+      "description": "Create, fill, review, and manage records.",
+      "href": "./record-manager/",
+      "imageSrc": "./images/record-manager.png",
+      "placeholder": "RM"
+    },
+    {
+      "title": "Media Asset Annotator",
+      "type": "Annotation tool",
+      "description": "Create and manage annotations for media assets.",
+      "href": "./annotator/",
+      "imageSrc": "./images/annotator.png",
+      "placeholder": "AN"
+    },
+    {
+      "title": "MediaCMS",
+      "type": "Media service",
+      "description": "Upload, browse, and manage media files used by Record Manager.",
+      "href": "./services/mediacms/",
+      "imageSrc": "./images/mediacms.png",
+      "placeholder": "MC"
+    },
+    {
+      "title": "Keycloak",
+      "type": "Identity provider",
+      "description": "Manage users and authentication configuration.",
+      "href": "./services/auth/",
+      "imageSrc": "./images/keycloak.png",
+      "placeholder": "KC"
+    }
+  ]
+}

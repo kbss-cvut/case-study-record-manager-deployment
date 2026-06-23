@@ -1,0 +1,176 @@
+@media (max-width: 1350px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-card {
+        grid-template-columns: minmax(260px, 350px) minmax(0, 1fr);
+        min-height: 230px;
+        padding: 26px;
+        gap: 28px;
+    }
+
+    .service-image {
+        height: 230px;
+    }
+
+    .service-image img {
+        padding: 16px;
+    }
+
+    .fallback-image {
+        font-size: 30px;
+    }
+
+    .service-content {
+        max-width: 620px;
+    }
+
+    .service-type {
+        font-size: 13px;
+    }
+
+    .service-content h3 {
+        font-size: 28px;
+        line-height: 1.16;
+    }
+
+    .service-content p {
+        margin-top: 12px;
+        font-size: 18px;
+        line-height: 1.45;
+        font-weight: 500;
+    }
+}
+
+@media (max-width: 900px) {
+    .content {
+        width: min(100% - 32px, var(--max-width));
+        padding-top: 30px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .service-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: 22px;
+        padding: 28px;
+    }
+
+    .service-image {
+        width: 100%;
+        height: 260px;
+    }
+
+    .service-image img {
+        padding: 14px;
+    }
+
+    .service-content {
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+    }
+
+    .service-type {
+        margin-bottom: 8px;
+        font-size: 12px;
+        line-height: 1.25;
+    }
+
+    .service-content h3 {
+        font-size: 25px;
+        line-height: 1.18;
+        letter-spacing: -0.02em;
+    }
+
+    .service-content p {
+        margin-top: 10px;
+        font-size: 17px;
+        line-height: 1.45;
+        font-weight: 500;
+    }
+}
+
+@media (max-width: 520px) {
+    .title-section h2 {
+        font-size: 26px;
+    }
+
+    .service-card {
+        padding: 22px;
+        gap: 20px;
+    }
+
+    .service-image {
+        height: 220px;
+    }
+
+    .service-image img {
+        padding: 10px;
+    }
+
+    .service-type {
+        font-size: 11px;
+    }
+
+    .service-content h3 {
+        font-size: 23px;
+        line-height: 1.18;
+    }
+
+    .service-content p {
+        font-size: 16px;
+        line-height: 1.45;
+    }
+}
+
+@media (max-width: 420px) {
+    .brand {
+        gap: 10px;
+    }
+
+    .brand-mark {
+        width: 38px;
+        height: 38px;
+    }
+
+    .brand h1 {
+        font-size: 16px;
+    }
+
+    .brand p {
+        font-size: 11px;
+    }
+
+    .content {
+        padding-top: 24px;
+    }
+
+    .title-section h2 {
+        font-size: 22px;
+    }
+
+    .title-section p {
+        font-size: 14px;
+    }
+
+    .service-card {
+        padding: 18px;
+        gap: 16px;
+    }
+
+    .service-image {
+        height: 190px;
+    }
+
+    .service-content h3 {
+        font-size: 20px;
+    }
+
+    .service-content p {
+        font-size: 14px;
+    }
+}
