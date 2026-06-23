@@ -1,0 +1,53 @@
+.gateway-header {
+    min-height: 78px;
+    padding: 0 38px;
+
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    gap: 14px 24px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    flex: 0 0 auto;
+    min-width: 0;
+}
+
+.brand-mark {
+    width: 44px;
+    height: 44px;
+
+    border-radius: 8px;
+    background: var(--primary);
+    color: #ffffff;
+
+    display: grid;
+    place-items: center;
+
+    font-weight: 700;
+    flex: 0 0 auto;
+}
+
+.brand h1 {
+    margin: 0;
+
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.brand p {
+    margin: 2px 0 0;
+
+    color: var(--muted);
+    font-size: 12px;
+}
