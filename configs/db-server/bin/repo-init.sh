@@ -39,8 +39,8 @@ wait_for_graphdb() {
 #   - VALIDATION_CANDIDATES are all *.ttl files recursively in PARENT ignoring any `shapes` subfolders
 #   - VALIDATION_CANDIDATES are validated against all shapes files from PARENT/`shapes` subfolder
 #
-# Validation is advisory only: failures are logged as warnings and deployment
-# proceeds regardless.
+# Validation is blocking: if any candidate file fails its shapes, deployment is
+# aborted (repo-init exits non-zero) and no import data is sent to GraphDB.
 #
 validate_shapes_folder() {
     local SHAPES_DIR="$1"
@@ -65,12 +65,21 @@ validate_shapes_folder() {
         return 0
     fi
 
-    echo "$SHAPE_FILES" | while read SHAPE_FILE; do
-        echo "INFO: Validating data files in $PARENT_DIR against shapes $SHAPE_FILE ..."
-        if ! $SCRIPT_DIR/validate-shacl.sh -s "$SHAPE_FILE" $TARGET_FILES; then
-            echo "WARNING: SHACL validation reported failures for shapes $SHAPE_FILE (see report above). Continuing with deployment."
-        fi
-    done
+    # The loop runs in a subshell (pipe), so it cannot set a variable in this
+    # function. Instead it exits with its own status, which the pipeline (and
+    # therefore `return $?`) propagates back to the caller.
+    echo "$SHAPE_FILES" | {
+        rc=0
+        while read SHAPE_FILE; do
+            echo "INFO: Validating data files in $PARENT_DIR against shapes $SHAPE_FILE ..."
+            if ! $SCRIPT_DIR/validate-shacl.sh -s "$SHAPE_FILE" $TARGET_FILES; then
+                echo "ERROR: SHACL validation reported failures for shapes $SHAPE_FILE (see report above)."
+                rc=1
+            fi
+        done
+        exit $rc
+    }
+    return $?
 }
 
 ############
@@ -111,9 +120,20 @@ DATA_DIR=/root/graphdb-import
 cd /
 
 echo "INFO: *** Validating import data against SHACL shapes folders ***"
-find "$DATA_DIR" -type d -name shapes | sort | while read SHAPES_DIR; do
-    validate_shapes_folder "$SHAPES_DIR"
-done
+VALIDATION_FAILED=0
+SHAPES_DIRS_FILE="`mktemp`"
+find "$DATA_DIR" -type d -name shapes | sort > "$SHAPES_DIRS_FILE"
+# Read from a file (not a pipe) so the loop runs in this shell and can set
+# VALIDATION_FAILED; every folder is validated so all failures are reported.
+while read SHAPES_DIR; do
+    validate_shapes_folder "$SHAPES_DIR" || VALIDATION_FAILED=1
+done < "$SHAPES_DIRS_FILE"
+rm -f "$SHAPES_DIRS_FILE"
+
+if [ "$VALIDATION_FAILED" -ne 0 ]; then
+    echo "ERROR: SHACL validation failed for one or more import files (see report above). Aborting deployment."
+    exit 1
+fi
 
 for DIR in ${DATA_DIR}/*/; do
     REPO_NAME="`basename ${DIR}`"
