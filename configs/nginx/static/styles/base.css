@@ -43,20 +43,20 @@ button {
 .content {
     width: min(var(--max-width), calc(100% - 64px));
     margin: 0 auto;
-    padding: 42px 0 56px;
+    padding: 42px 0 120px;
 
     flex: 1 0 auto;
 }
 
 .title-section {
     margin-bottom: 28px;
+    margin-top: 28px;
 }
 
 .title-section h2 {
     margin: 0;
-
-    font-size: 32px;
-    line-height: 1.25;
+    font-size: 34px;
+    line-height: 1.27;
     font-weight: 700;
 }
 
