@@ -1,0 +1,278 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vs-m: <http://vfn.cz/ontologies/vita-study/model/> .
+
+<http://vfn.cz/ontologies/vita-study/model> {
+
+<http://vfn.cz/ontologies/vita-study/model> a owl:Ontology .
+
+### start of generated model
+
+vs-m:capsular-interruption--absent a vs-m:capsular-interruption,
+        owl:NamedIndividual ;
+    rdfs:label "Absent" .
+
+vs-m:capsular-interruption--present a vs-m:capsular-interruption,
+        owl:NamedIndividual ;
+    rdfs:label "Present" .
+
+vs-m:color-score--1 a vs-m:color-score,
+        owl:NamedIndividual ;
+    rdfs:label "1" .
+
+vs-m:color-score--2 a vs-m:color-score,
+        owl:NamedIndividual ;
+    rdfs:label "2" .
+
+vs-m:color-score--3 a vs-m:color-score,
+        owl:NamedIndividual ;
+    rdfs:label "3" .
+
+vs-m:color-score--4 a vs-m:color-score,
+        owl:NamedIndividual ;
+    rdfs:label "4" .
+
+vs-m:cortical-thickening--absent a vs-m:cortical-thickening,
+        owl:NamedIndividual ;
+    rdfs:label "Absent" .
+
+vs-m:cortical-thickening-type--concentric a vs-m:cortical-thickening-type,
+        owl:NamedIndividual ;
+    rdfs:label "Concentric" .
+
+vs-m:cortical-thickening-type--eccentric a vs-m:cortical-thickening-type,
+        owl:NamedIndividual ;
+    rdfs:label "Eccentric" .
+
+vs-m:cortico-medullar-interface-distortion--absent a vs-m:cortico-medullar-interface-distortion,
+        owl:NamedIndividual ;
+    rdfs:label "Absent" .
+
+vs-m:cortico-medullar-interface-distortion--present a vs-m:cortico-medullar-interface-distortion,
+        owl:NamedIndividual ;
+    rdfs:label "Present" .
+
+vs-m:dominant-vascular-flow-architecture--combined a vs-m:dominant-vascular-flow-architecture,
+        owl:NamedIndividual ;
+    rdfs:label "Combined" .
+
+vs-m:dominant-vascular-flow-architecture--hilar a vs-m:dominant-vascular-flow-architecture,
+        owl:NamedIndividual ;
+    rdfs:label "Hilar" .
+
+vs-m:dominant-vascular-flow-architecture--transcapsular a vs-m:dominant-vascular-flow-architecture,
+        owl:NamedIndividual ;
+    rdfs:label "Transcapsular" .
+
+vs-m:extension-of-cortical-thickening--focal a vs-m:extension-of-cortical-thickening,
+        owl:NamedIndividual ;
+    rdfs:label "Focal" .
+
+vs-m:extent-of-lymph-nodes-fusion--complete a vs-m:extent-of-lymph-nodes-fusion,
+        owl:NamedIndividual ;
+    rdfs:label "Complete" .
+
+vs-m:extent-of-lymph-nodes-fusion--partial a vs-m:extent-of-lymph-nodes-fusion,
+        owl:NamedIndividual ;
+    rdfs:label "Partial" .
+
+vs-m:extent-of-nodal-core-sing--complete a vs-m:extent-of-nodal-core-sing,
+        owl:NamedIndividual ;
+    rdfs:label "Complete" .
+
+vs-m:extent-of-nodal-core-sing--partial a vs-m:extent-of-nodal-core-sing,
+        owl:NamedIndividual ;
+    rdfs:label "Partial" .
+
+vs-m:hyperechoic-perinodal-ring--absent a vs-m:hyperechoic-perinodal-ring,
+        owl:NamedIndividual ;
+    rdfs:label "Absent" .
+
+vs-m:hyperechoic-perinodal-ring--present a vs-m:hyperechoic-perinodal-ring,
+        owl:NamedIndividual ;
+    rdfs:label "Present" .
+
+vs-m:irregular-shape--lobulated a vs-m:irregular-shape,
+        owl:NamedIndividual ;
+    rdfs:label "Lobulated" .
+
+vs-m:irregular-shape--spiculated a vs-m:irregular-shape,
+        owl:NamedIndividual ;
+    rdfs:label "Spiculated" .
+
+vs-m:level-of-ultrasound-experience-high a vs-m:level-of-ultrasound-experience,
+        owl:NamedIndividual ;
+    rdfs:label "high" ;
+    rdfs:comment ">5000 scans" .
+
+vs-m:level-of-ultrasound-experience-intermediate a vs-m:level-of-ultrasound-experience,
+        owl:NamedIndividual ;
+    rdfs:label "intermediate" ;
+    rdfs:comment "500-5000 scans" .
+
+vs-m:level-of-ultrasound-experience-low a vs-m:level-of-ultrasound-experience,
+        owl:NamedIndividual ;
+    rdfs:label "low" ;
+    rdfs:comment "<500 scans" .
+
+vs-m:nodal-core-sign--absent a vs-m:nodal-core-sign,
+        owl:NamedIndividual ;
+    rdfs:label "Absent" .
+
+vs-m:nodal-echogenicity--homogeneous a vs-m:nodal-echogenicity,
+        owl:NamedIndividual ;
+    rdfs:label "Homogeneous" .
+
+vs-m:nodal-grouping--absent a vs-m:nodal-grouping,
+        owl:NamedIndividual ;
+    rdfs:label "Absent" .
+
+vs-m:predominant-pattern--cystic-areas a vs-m:predominant-pattern,
+        owl:NamedIndividual ;
+    rdfs:label "Cystic areas" .
+
+vs-m:predominant-pattern--hyperechoic-deposits a vs-m:predominant-pattern,
+        owl:NamedIndividual ;
+    rdfs:label "Hyperechoic deposits" .
+
+vs-m:predominant-pattern--reticulation a vs-m:predominant-pattern,
+        owl:NamedIndividual ;
+    rdfs:label "Reticulation" .
+
+vs-m:predominant-pattern--sand-pattern a vs-m:predominant-pattern,
+        owl:NamedIndividual ;
+    rdfs:label "Sand pattern" .
+
+vs-m:regular-shape--oval a vs-m:regular-shape,
+        owl:NamedIndividual ;
+    rdfs:label "Oval" .
+
+vs-m:regular-shape--round a vs-m:regular-shape,
+        owl:NamedIndividual ;
+    rdfs:label "Round" .
+
+vs-m:type-of-ultrasound-center-non-oncological a vs-m:type-of-ultrasound-center,
+        owl:NamedIndividual ;
+    rdfs:label "non-oncological" .
+
+vs-m:type-of-ultrasound-center-oncological a vs-m:type-of-ultrasound-center,
+        owl:NamedIndividual ;
+    rdfs:label "oncological" .
+
+vs-m:contours--irregular a vs-m:contours,
+        owl:NamedIndividual ;
+    rdfs:label "Irregular" .
+
+vs-m:contours--regular a vs-m:contours,
+        owl:NamedIndividual ;
+    rdfs:label "Regular" .
+
+vs-m:cortical-thickening--present a vs-m:cortical-thickening,
+        owl:NamedIndividual ;
+    rdfs:label "Present" .
+
+vs-m:extension-of-cortical-thickening--diffuse a vs-m:extension-of-cortical-thickening,
+        owl:NamedIndividual ;
+    rdfs:label "Diffuse" .
+
+vs-m:nodal-core-sign--present a vs-m:nodal-core-sign,
+        owl:NamedIndividual ;
+    rdfs:label "Present" .
+
+vs-m:nodal-echogenicity--non-homogeneous a vs-m:nodal-echogenicity,
+        owl:NamedIndividual ;
+    rdfs:label "Non homogeneous" .
+
+vs-m:nodal-grouping--present a vs-m:nodal-grouping,
+        owl:NamedIndividual ;
+    rdfs:label "Present" .
+
+vs-m:capsular-interruption a owl:Class ;
+    rdfs:label "Capsular interruption" .
+
+vs-m:contours a owl:Class ;
+    rdfs:label "Contours" .
+
+vs-m:cortical-thickening a owl:Class ;
+    rdfs:label "Cortical thickening" .
+
+vs-m:cortical-thickening-type a owl:Class ;
+    rdfs:label "Cortical thickening type" ;
+    vs-m:is-relevant-if-answer-value vs-m:extension-of-cortical-thickening--diffuse .
+
+vs-m:cortico-medullar-interface-distortion a owl:Class ;
+    rdfs:label "Cortico medullar interface distortion" .
+
+vs-m:extension-of-cortical-thickening a owl:Class ;
+    rdfs:label "Extension of cortical thickening" ;
+    vs-m:is-relevant-if-answer-value vs-m:cortical-thickening--present .
+
+vs-m:extent-of-lymph-nodes-fusion a owl:Class ;
+    rdfs:label "Extent of lymph nodes fusion" ;
+    vs-m:is-relevant-if-answer-value vs-m:nodal-grouping--present .
+
+vs-m:extent-of-nodal-core-sing a owl:Class ;
+    rdfs:label "Extent of nodal core sing" ;
+    vs-m:is-relevant-if-answer-value vs-m:nodal-core-sign--present .
+
+vs-m:hyperechoic-perinodal-ring a owl:Class ;
+    rdfs:label "Hyperechoic perinodal ring" .
+
+vs-m:irregular-shape a owl:Class ;
+    rdfs:label "Irregular shape" ;
+    vs-m:is-relevant-if-answer-value vs-m:contours--irregular .
+
+vs-m:nodal-core-sign a owl:Class ;
+    rdfs:label "Nodal core sign" .
+
+vs-m:nodal-echogenicity a owl:Class ;
+    rdfs:label "Nodal echogenicity" .
+
+vs-m:nodal-grouping a owl:Class ;
+    rdfs:label "Nodal grouping" .
+
+vs-m:regular-shape a owl:Class ;
+    rdfs:label "Regular shape" ;
+    vs-m:is-relevant-if-answer-value vs-m:contours--regular .
+
+vs-m:type-of-ultrasound-center a owl:Class ;
+    rdfs:label "Type of ultrasound center" .
+
+vs-m:dominant-vascular-flow-architecture a owl:Class ;
+    rdfs:label "Dominant vascular flow architecture" .
+
+vs-m:level-of-ultrasound-experience a owl:Class ;
+    rdfs:label "Level of ultrasound experience" .
+
+vs-m:color-score a owl:Class ;
+    rdfs:label "Color score" .
+
+vs-m:predominant-pattern a owl:Class ;
+    rdfs:label "Predominant pattern" ;
+    vs-m:is-relevant-if-answer-value vs-m:nodal-echogenicity--non-homogeneous .
+
+### end of generated model
+
+
+
+### start of manual rules (however can be generated)
+
+vs-m:predominant-pattern a vs-m:relator-target-entity .
+
+vs-m:cortical-thickening-type vs-m:is-relevant-if-answer-value vs-m:extension-of-cortical-thickening--diffuse .
+
+vs-m:extension-of-cortical-thickening vs-m:is-relevant-if-answer-value vs-m:cortical-thickening--present .
+
+vs-m:extent-of-lymph-nodes-fusion vs-m:is-relevant-if-answer-value vs-m:nodal-grouping--present .
+
+vs-m:extent-of-nodal-core-sing vs-m:is-relevant-if-answer-value vs-m:nodal-core-sign--present .
+
+vs-m:irregular-shape vs-m:is-relevant-if-answer-value vs-m:contours--irregular .
+
+vs-m:regular-shape vs-m:is-relevant-if-answer-value vs-m:contours--regular .
+
+vs-m:predominant-pattern vs-m:is-relevant-if-answer-value vs-m:nodal-echogenicity--non-homogeneous .
+
+### end of manual rules
+
+}
