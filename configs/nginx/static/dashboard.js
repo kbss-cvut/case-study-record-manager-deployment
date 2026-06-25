@@ -29,8 +29,7 @@ async function loadServices() {
 function sanitizeService(service) {
     return {
         title: String(service.title || "Unnamed service"),
-        type: String(service.type || "Service"),
-        description: String(service.description || ""),
+        description: String(service.description || service.info || ""),
         href: String(service.href || "#"),
         imageSrc: String(service.imageSrc || ""),
         placeholder: String(service.placeholder || getPlaceholderFromTitle(service.title || "Service"))
@@ -82,29 +81,93 @@ function createImage(service) {
     return wrapper;
 }
 
+function createInfoControl(service) {
+    if (!service.description) {
+        return null;
+    }
+
+    const infoButton = document.createElement("button");
+
+    infoButton.type = "button";
+    infoButton.className = "service-info-btn";
+    infoButton.setAttribute("aria-label", `More information about ${service.title}`);
+    infoButton.setAttribute("aria-expanded", "false");
+    infoButton.textContent = "i";
+
+    const popover = document.createElement("div");
+
+    popover.className = "service-popover";
+    popover.setAttribute("role", "tooltip");
+    popover.hidden = true;
+    popover.textContent = service.description;
+
+    infoButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const isOpen = !popover.hidden;
+
+        closeAllPopovers();
+
+        if (!isOpen) {
+            popover.hidden = false;
+            infoButton.setAttribute("aria-expanded", "true");
+        }
+    });
+
+    return {
+        infoButton,
+        popover
+    };
+}
+
+function closeAllPopovers() {
+    if (!elements.servicesGrid) {
+        return;
+    }
+
+    elements.servicesGrid.querySelectorAll(".service-popover").forEach((popover) => {
+        popover.hidden = true;
+    });
+
+    elements.servicesGrid.querySelectorAll(".service-info-btn").forEach((button) => {
+        button.setAttribute("aria-expanded", "false");
+    });
+}
+
 function createServiceCard(rawService) {
     const service = sanitizeService(rawService);
 
-    const card = document.createElement("a");
+    const card = document.createElement("article");
     card.className = "service-card";
-    card.href = service.href;
 
-    const image = createImage(service);
+    const imageLink = document.createElement("a");
+    imageLink.className = "service-image-link";
+    imageLink.href = service.href;
+    imageLink.setAttribute("aria-label", `Open ${service.title}`);
+
+    imageLink.appendChild(createImage(service));
 
     const info = document.createElement("div");
     info.className = "service-info";
 
-    const type = document.createElement("span");
-    type.textContent = service.type;
+    const titleLink = document.createElement("a");
+    titleLink.className = "service-title-link";
+    titleLink.href = service.href;
 
     const title = document.createElement("h3");
     title.textContent = service.title;
 
-    const description = document.createElement("p");
-    description.textContent = service.description;
+    titleLink.appendChild(title);
+    info.appendChild(titleLink);
 
-    info.append(type, title, description);
-    card.append(image, info);
+    const infoControl = createInfoControl(service);
+
+    if (infoControl) {
+        info.append(infoControl.infoButton, infoControl.popover);
+    }
+
+    card.append(imageLink, info);
 
     return card;
 }
@@ -152,8 +215,6 @@ async function initServices() {
     }
 }
 
-async function init() {
-    await initServices();
-}
+document.addEventListener("click", closeAllPopovers);
 
-init();
+initServices();
