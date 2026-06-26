@@ -1,0 +1,32 @@
+{
+  "services": [
+    {
+      "title": "Record Manager",
+      "description": "Create, fill, review, and manage records.",
+      "href": "./record-manager/",
+      "imageSrc": "./images/record-manager.png",
+      "placeholder": "RM"
+    },
+    {
+      "title": "Media Annotation",
+      "description": "Create and manage annotations for media assets.",
+      "href": "./annotator/",
+      "imageSrc": "./images/annotator.png",
+      "placeholder": "AN"
+    },
+    {
+      "title": "Media Management",
+      "description": "Upload, browse, and manage media files used by Record Manager.",
+      "href": "./services/mediacms/",
+      "imageSrc": "./images/mediacms.png",
+      "placeholder": "MC"
+    },
+    {
+      "title": "User Management",
+      "description": "Manage users and authentication configuration.",
+      "href": "./services/auth/",
+      "imageSrc": "./images/keycloak.png",
+      "placeholder": "KC"
+    }
+  ]
+}

@@ -1,0 +1,213 @@
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
+.services-message {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 28px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.45;
+    font-weight: 500;
+}
+
+.services-message-error {
+    color: var(--danger);
+}
+
+.service-card {
+    position: relative;
+    min-height: 290px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: var(--surface);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.055);
+    overflow: hidden;
+    transition:
+            border-color 140ms ease,
+            box-shadow 140ms ease,
+            transform 140ms ease,
+            background 140ms ease;
+}
+
+.service-card:hover {
+    background: var(--surface);
+    border-color: var(--border-strong);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.085);
+    transform: translateY(-2px);
+}
+
+.service-image-link {
+    display: block;
+    cursor: pointer;
+}
+
+.service-image {
+    cursor: pointer;
+}
+
+.service-image img {
+    cursor: pointer;
+}
+
+.service-image-link:focus-visible,
+.service-title-link:focus-visible,
+.service-info-btn:focus-visible {
+    outline: 3px solid rgba(31, 78, 121, 0.22);
+    outline-offset: 4px;
+}
+
+.service-image {
+    width: 100%;
+    height: 215px;
+
+    border-bottom: 1px solid var(--border);
+    background: #f8fafc;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    padding: 24px;
+
+    display: block;
+}
+
+.service-fallback {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    place-items: center;
+
+    color: var(--primary-dark);
+    font-size: 38px;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+}
+
+.service-info {
+    position: relative;
+
+    min-height: 90px;
+    padding: 24px 26px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.service-title-link {
+    min-width: 0;
+    max-width: calc(100% - 40px);
+
+    display: block;
+    flex: 0 1 auto;
+}
+
+.service-info h3 {
+    margin: 0;
+
+    color: var(--text);
+    font-size: 23px;
+    line-height: 1.14;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+}
+
+.service-info-btn {
+    flex: 0 0 auto;
+
+    width: 28px;
+    height: 28px;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--surface);
+
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    font-style: italic;
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1;
+
+    display: grid;
+    place-items: center;
+
+    cursor: pointer;
+    z-index: 2;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(3px);
+
+    transition:
+            background 140ms ease,
+            border-color 140ms ease,
+            color 140ms ease,
+            opacity 140ms ease,
+            visibility 140ms ease,
+            transform 140ms ease;
+}
+
+.service-card:hover .service-info-btn,
+.service-card:focus-within .service-info-btn,
+.service-info-btn[aria-expanded="true"] {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.service-info-btn:hover,
+.service-info-btn:focus-visible,
+.service-info-btn[aria-expanded="true"] {
+    background: var(--surface-muted);
+    border-color: var(--border-strong);
+    color: var(--primary);
+}
+
+.service-popover {
+    position: absolute;
+    right: 24px;
+    bottom: calc(100% - 6px);
+
+    width: min(300px, calc(100% - 48px));
+
+    padding: 13px 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.45;
+    font-weight: 500;
+
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.16);
+    z-index: 3;
+}
+
+.service-popover[hidden] {
+    display: none;
+}
