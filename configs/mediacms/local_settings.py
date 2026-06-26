@@ -46,6 +46,7 @@ MP4HLS_COMMAND = "/home/mediacms.io/bento4/bin/mp4hls"
 FRONTEND_HOST = os.getenv('FRONTEND_HOST', 'http://localhost')
 PORTAL_NAME = os.getenv('PORTAL_NAME', 'MediaCMS')
 REGISTER_ALLOWED = False
+MAX_MEDIA_PER_PLAYLIST = int(os.getenv('MAX_MEDIA_PER_PLAYLIST', '500'))
 
 # ========================
 # PROFILE DEFINITIONS
