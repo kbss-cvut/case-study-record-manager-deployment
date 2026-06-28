@@ -1,4 +1,4 @@
-FROM mediacms/mediacms:7.2
+FROM mediacms/mediacms:latest
 
 ARG MEDIACMS_HOME=/home/mediacms.io/mediacms
 ARG MEDIACMS_DOCKER_DIR=${MEDIACMS_HOME}/deploy/docker
