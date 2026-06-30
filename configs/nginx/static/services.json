@@ -8,21 +8,21 @@
       "placeholder": "RM"
     },
     {
-      "title": "Media Annotation",
+      "title": "Media Annotator",
       "description": "Create and manage annotations for media assets.",
       "href": "./annotator/",
       "imageSrc": "./images/annotator.png",
       "placeholder": "AN"
     },
     {
-      "title": "Media Management",
+      "title": "Media Manager",
       "description": "Upload, browse, and manage media files used by Record Manager.",
       "href": "./services/mediacms/",
       "imageSrc": "./images/mediacms.png",
       "placeholder": "MC"
     },
     {
-      "title": "User Management",
+      "title": "User Manager",
       "description": "Manage users and authentication configuration.",
       "href": "./services/auth/",
       "imageSrc": "./images/keycloak.png",
