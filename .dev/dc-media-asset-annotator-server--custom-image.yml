@@ -1,0 +1,17 @@
+# Substitutes the media-asset-annotator-server image with a custom one, e.g. a per-PR
+# build published to ghcr.io (tag `pr-<N>`), so a change can be tried in the full dev
+# stack without building anything locally.
+#
+# The image is taken from $ANNOTATOR_SERVER_CUSTOM_IMAGE, which MUST be set and non-empty —
+# compose aborts otherwise (the `:?` below). This is deliberate: it prevents silently
+# falling back to the `:latest` image and thinking you tested the change when you didn't.
+#
+# Pass the variable on the command line — do NOT add it to .env, so the substitution is
+# always an explicit, opt-in action. To revert, run `make dev` (recreates with :latest).
+#
+#   ANNOTATOR_SERVER_CUSTOM_IMAGE=ghcr.io/kbss-cvut/media-asset-annotator-server:pr-5 \
+#     docker compose -f docker-compose.yml -f docker-compose.dev.yml \
+#       -f .dev/dc-media-asset-annotator-server--custom-image.yml --env-file .env up -d
+services:
+  media-asset-annotator-server:
+    image: ${ANNOTATOR_SERVER_CUSTOM_IMAGE:?set ANNOTATOR_SERVER_CUSTOM_IMAGE to the image to test, e.g. ghcr.io/kbss-cvut/media-asset-annotator-server:pr-5}

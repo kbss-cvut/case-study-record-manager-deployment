@@ -1,0 +1,16 @@
+# Allows a host-run annotator frontend dev server (Vite: 5173 for `npm run dev`,
+# 4173 for `npm run preview`) to call the dockerized media-asset-annotator-server.
+#
+# Use this when you run the media-asset-annotator UI on the host and point it at the
+# dockerized backend through the gateway. Without it the browser blocks the cross-origin
+# (localhost:5173 -> gateway) requests because the server does not return the matching
+# CORS headers.
+#
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml \
+#     -f .dev/dc-media-asset-annotator--allow-external.yml --env-file .env up -d
+services:
+  media-asset-annotator-server:
+    environment:
+      # Includes the in-cluster origins (gateway + service name) so behaviour is the
+      # same regardless of compose ordering, plus the host Vite dev/preview ports.
+      CORS_ALLOWED_ORIGINS: "http://localhost:${INTERNAL_HOST_PORT:-1235},http://media-asset-annotator,http://localhost:5173,http://localhost:4173"

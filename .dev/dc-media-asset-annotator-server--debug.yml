@@ -1,0 +1,11 @@
+# Enables Java remote debugging on media-asset-annotator-server.
+#
+# The image entrypoint is `java -jar app.jar` (no shell wrapper), so JAVA_OPTS is not
+# read; JAVA_TOOL_OPTIONS is picked up by the JVM automatically.
+# Attach your debugger to 127.0.0.1:${JAVA_DEBUG_ANNOTATOR_SERVER_PORT:-5006}.
+services:
+  media-asset-annotator-server:
+    ports:
+      - "127.0.0.1:${JAVA_DEBUG_ANNOTATOR_SERVER_PORT:-5006}:5006"
+    environment:
+      JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006"
